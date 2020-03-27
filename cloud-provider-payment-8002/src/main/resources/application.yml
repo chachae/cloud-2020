@@ -27,3 +27,8 @@ eureka:
     service-url:
       # 集群版Eureka
       defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
+  instance:
+    # 服务注册名，默认是 IP:应用名:应用端口名
+    instance-id: payment-8002
+    # 访问路径可以显示 IP 地址
+    prefer-ip-address: true

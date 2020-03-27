@@ -24,7 +24,7 @@ public class ConsumerController {
 
   // private static final String PAYMENT_URL = "http://localhost:8001/payment";
   // 不能写死，要使用服务名
-  private static final String PAYMENT_URL = "http://CLOUD-PAYMENT-SERVICE";
+  private static final String PAYMENT_URL = "http://CLOUD-PAYMENT-SERVICE/payment";
 
   @GetMapping("/create")
   public Result<Boolean> creat(Payment payment) {
