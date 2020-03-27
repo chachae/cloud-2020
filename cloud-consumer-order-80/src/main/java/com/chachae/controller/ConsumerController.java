@@ -22,7 +22,9 @@ public class ConsumerController {
     this.restTemplate = restTemplate;
   }
 
-  private static final String PAYMENT_URL = "http://localhost:8001/payment";
+  // private static final String PAYMENT_URL = "http://localhost:8001/payment";
+  // 不能写死，要使用服务名
+  private static final String PAYMENT_URL = "http://CLOUD-PAYMENT-SERVICE";
 
   @GetMapping("/create")
   public Result<Boolean> creat(Payment payment) {
