@@ -8,4 +8,4 @@ spring:
   cloud:
     zookeeper:
       # 注册到zookeeper地址
-      connect-string: chachae.cn:2181
+      connect-string: virtual-01.com:2181

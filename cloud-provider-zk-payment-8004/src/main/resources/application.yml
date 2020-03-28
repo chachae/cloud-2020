@@ -4,7 +4,7 @@ server:
 spring:
   cloud:
     zookeeper:
-      connect-string: chachae.cn:2181
+      connect-string: virtual-01.com:2181
 
   application:
     name: cloud-provider-payment
