@@ -10,4 +10,7 @@ eureka:
     # 表示自己就是注册中心
     fetch-registry: false
     service-url:
+      # 集群版：可配置多个注册中心，逗号隔开
       defaultZone: http://eureka7001.com:7001/eureka/
+      # 单机版：注册自己
+      # defaultZone: http://eureka7001.com:7001/eureka/

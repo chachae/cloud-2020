@@ -11,9 +11,9 @@ eureka:
     fetch-registry: false
     service-url:
       # 集群版：可配置多个注册中心，逗号隔开
-      # defaultZone: http://eureka7002.com:7002/eureka/
+      defaultZone: http://eureka7002.com:7002/eureka/
       # 单机版：注册自己
-      defaultZone: http://eureka7001.com:7001/eureka/
+      # defaultZone: http://eureka7001.com:7001/eureka/
   server:
-    # 关闭自我保护机制：默认开启，也建议开启，同时需要知道 Eureka 自我保护机制是怎么一回事
-    enable-self-preservation: false
+    # 关闭自我保护机制：默认开启，也建议开启，false 关闭，同时需要知道 Eureka 自我保护机制是怎么一回事
+    enable-self-preservation: true
