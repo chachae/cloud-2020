@@ -26,9 +26,15 @@ eureka:
     register-with-eureka: true
     service-url:
       # 集群版Eureka
-      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
+      # defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
+      # 单机版Eureka
+      defaultZone: http://eureka7001.com:7001/eureka
   instance:
     # 服务注册名，默认是 IP:应用名:应用端口名
     instance-id: payment-8001
     # 访问路径可以显示 IP 地址
     prefer-ip-address: true
+    # 客户端向 Eureka 服务端发送心跳的时间间隔
+    lease-renewal-interval-in-seconds: 60
+    # Eureka 服务端收到最后一次心跳的后的等待时间上限
+    lease-expiration-duration-in-seconds: 90
