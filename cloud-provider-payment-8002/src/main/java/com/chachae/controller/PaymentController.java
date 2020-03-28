@@ -6,6 +6,8 @@ import com.chachae.service.PaymentService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * @author chachae
  * @since 2020/3/27 17:11
@@ -33,5 +35,21 @@ public class PaymentController {
   public Result<Payment> get(@PathVariable Long id) {
     Payment res = this.paymentService.getById(id);
     return new Result<>(200, "查询成功，服务提供方接口：" + port, res);
+  }
+
+  /**
+   * 模拟 Open-Feign 超时
+   *
+   * @return Integer
+   */
+  @GetMapping("/timeout")
+  public Integer timeout() {
+    try {
+      // 模拟耗时业务，3秒钟
+      TimeUnit.SECONDS.sleep(3);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+    return port;
   }
 }

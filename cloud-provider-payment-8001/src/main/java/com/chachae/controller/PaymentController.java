@@ -10,6 +10,7 @@ import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author chachae
@@ -42,6 +43,22 @@ public class PaymentController {
   public Result<Payment> get(@PathVariable Long id) {
     Payment res = this.paymentService.getById(id);
     return new Result<>(200, "查询成功，服务提供方接口：" + port, res);
+  }
+
+  /**
+   * 模拟 Open-Feign 超时
+   *
+   * @return Integer
+   */
+  @GetMapping("/timeout")
+  public Integer timeout() {
+    try {
+      // 模拟耗时业务，3秒钟
+      TimeUnit.SECONDS.sleep(3);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+    return port;
   }
 
   @GetMapping("/discovery")
