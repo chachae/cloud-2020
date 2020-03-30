@@ -1,5 +1,6 @@
 package com.chachae.controller;
 
+import com.chachae.entity.Result;
 import com.chachae.service.PaymentService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,12 +24,17 @@ public class PaymentController {
   }
 
   @GetMapping("/ok/{id}")
-  public Map<String, Object> paymentOk(@PathVariable Integer id) {
-    return this.paymentService.paymentOk(id);
+  public Result<Map<String, Object>> paymentOk(@PathVariable("id") Integer id) {
+    return new Result<>(200, "success", this.paymentService.paymentOk(id));
   }
 
   @GetMapping("/timeout/{id}")
-  public Map<String, Object> paymentTimeout(@PathVariable Integer id) {
-    return this.paymentService.paymentTimeout(id);
+  public Result<Map<String, Object>> paymentTimeout(@PathVariable Integer id) {
+    return new Result<>(200, "success", this.paymentService.paymentTimeout(id));
+  }
+
+  @GetMapping("/circuit/{id}")
+  public Result<String> circuit(@PathVariable Integer id) {
+    return new Result<>(200, "success", this.paymentService.circuitBreaker(id));
   }
 }

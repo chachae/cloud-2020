@@ -11,7 +11,9 @@ import java.util.Map;
  * @author chachae
  * @since 2020/3/29 21:16
  */
-@FeignClient(value = "CLOUD-PROVIDER-HYSTRIX-PAYMENT")
+@FeignClient(
+    value = "CLOUD-PROVIDER-HYSTRIX-PAYMENT",
+    fallbackFactory = ConsumerServiceFallbackImpl.class)
 public interface ConsumerService {
 
   @GetMapping("/payment/hystrix/ok/{id}")
