@@ -24,6 +24,9 @@
         <module>cloud-consumer-feign-hystrix-order-80</module>
         <module>cloud-consumer-hystrix-dashboard-9001</module>
         <module>cloud-gateway-9527</module>
+        <module>cloud-alibaba-provider-payment-9001</module>
+        <module>cloud-alibaba-provider-payment-9002</module>
+        <module>cloud-alibaba-consumer-order-83</module>
     </modules>
     <packaging>pom</packaging>
 
