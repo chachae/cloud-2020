@@ -9,6 +9,13 @@ spring:
     url: jdbc:mysql:///cloud2020?serverTimezone=Asia/Shanghai&characterEncoding=utf8&useSSL=false
     username: root
     password: 123456
+  # zipkin/sleuth链路跟踪
+  zipkin:
+    base-url: http://virtual-01.com:9411
+  sleuth:
+    sampler:
+      # 采样值介于0到1之间,1表示全部采集
+      probability: 1
 
 
 mybatis-plus:

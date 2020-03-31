@@ -13,6 +13,12 @@
 
     <dependencies>
 
+        <!--包含了sleuth+zipkin-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-zipkin</artifactId>
+        </dependency>
+
         <!-- 通用包 -->
         <dependency>
             <groupId>com.chachae</groupId>

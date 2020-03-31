@@ -4,6 +4,14 @@ spring:
   application:
     name: cloud-consumer-order
 
+  # zipkin/sleuth链路跟踪
+  zipkin:
+    base-url: http://virtual-01.com:9411
+  sleuth:
+    sampler:
+      # 采样值介于0到1之间,1表示全部采集
+      probability: 1
+
 eureka:
   client:
     # 是否注册

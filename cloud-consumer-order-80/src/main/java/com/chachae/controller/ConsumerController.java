@@ -35,4 +35,9 @@ public class ConsumerController {
   public Result<Payment> get(@PathVariable Long id) {
     return this.restTemplate.getForObject(PAYMENT_URL + "/get/" + id, Result.class);
   }
+
+  @GetMapping("/zipkin")
+  public String zipkin() {
+    return this.restTemplate.getForObject(PAYMENT_URL + "/zipkin", String.class);
+  }
 }

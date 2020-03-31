@@ -45,6 +45,11 @@ public class PaymentController {
     return new Result<>(200, "查询成功，服务提供方接口：" + port, res);
   }
 
+  @GetMapping("/zipkin")
+  public String paymentZipkin() {
+    return "Hello Zipkin";
+  }
+
   /**
    * 模拟 Open-Feign 超时
    *
