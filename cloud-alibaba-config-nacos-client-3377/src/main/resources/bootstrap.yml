@@ -1,0 +1,22 @@
+server:
+  port: 3377
+
+spring:
+  application:
+    name: nacos-config-clinet
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: virtual-01.com:8848
+      config:
+        server-addr: virtual-01.com
+        # 配置类型
+        file-extension: yaml
+        # 分组
+        group: DEV_GROUP
+        # 命名空间
+        namespace: ff28662e-7a82-473d-9533-12eace73dccb
+
+# 配置文件命名规范
+#  ${spring.application.name}-${spring.profile.active}.${spring.cloud.nacos.config.file-extension}
