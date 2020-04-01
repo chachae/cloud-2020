@@ -1,0 +1,26 @@
+server:
+  port: 8401
+spring:
+  application:
+    name: cloud-alibaba-sentinel-service
+  cloud:
+    nacos:
+      discovery:
+        # Nacos服务注册中心地址
+        server-addr: virtual-01.com:8848
+    sentinel:
+      transport:
+        # sentinel dashboard 地址
+        dashboard: virtual-01.com:8080
+        # 默认为8719，如果被占用会自动+1，直到找到为止
+        port: 8719
+        # 客户端IP
+        clientIp: 192.168.32.1
+      # 关闭懒加载
+      eager: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
