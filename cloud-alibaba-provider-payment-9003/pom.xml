@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>cloud-alibaba-consumer-order-83</artifactId>
+    <artifactId>cloud-alibaba-provider-payment-9003</artifactId>
 
     <dependencies>
         <dependency>
