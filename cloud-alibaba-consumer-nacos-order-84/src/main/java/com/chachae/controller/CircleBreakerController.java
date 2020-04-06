@@ -6,6 +6,7 @@ import com.chachae.entity.Payment;
 import com.chachae.entity.Result;
 import com.chachae.service.PaymentService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

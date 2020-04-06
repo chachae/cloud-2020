@@ -32,6 +32,9 @@
         <module>cloud-alibaba-provider-payment-9003</module>
         <module>cloud-alibaba-provider-payment-9004</module>
         <module>cloud-alibaba-consumer-nacos-order-84</module>
+        <module>seata-order-service-2001</module>
+        <module>seata-stroage-service-2002</module>
+        <module>seata-account-service-2003</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -44,7 +47,7 @@
         <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
 
         <java.version>1.8</java.version>
-        <spring-boot.version>2.2.5.RELEASE</spring-boot.version>
+        <spring-boot.version>2.2.1.RELEASE</spring-boot.version>
         <spring-cloud-alibaba.version>2.2.0.RELEASE</spring-cloud-alibaba.version>
         <spring-cloud.version>Hoxton.SR1</spring-cloud.version>
         <mysql-driver.version>8.0.19</mysql-driver.version>

@@ -1,7 +1,7 @@
 package com.chachae.service;
 
-import com.chachae.entity.Payment;
 import com.chachae.entity.Result;
+import feign.hystrix.FallbackFactory;
 import org.springframework.stereotype.Component;
 
 /**
@@ -9,10 +9,10 @@ import org.springframework.stereotype.Component;
  * @since 2020/4/5 20:50
  */
 @Component
-public class PaymentFallbackService implements PaymentService {
+public class PaymentFallbackService implements FallbackFactory<PaymentService> {
 
   @Override
-  public Result<Payment> paymentSql(Long id) {
-    return new Result<>(400, "fallback");
+  public PaymentService create(Throwable throwable) {
+    return id -> new Result<>(400, "fallback");
   }
 }
