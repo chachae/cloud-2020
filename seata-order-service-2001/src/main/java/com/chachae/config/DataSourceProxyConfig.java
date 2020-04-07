@@ -22,7 +22,6 @@ import javax.sql.DataSource;
  * @since 2020/4/6 17:14
  */
 @Configuration
-@EnableConfigurationProperties({MybatisPlusProperties.class})
 public class DataSourceProxyConfig {
 
   @Bean
@@ -37,26 +36,4 @@ public class DataSourceProxyConfig {
     return new DataSourceProxy(dataSource);
   }
 
-  @Bean
-  public SqlSessionFactory sqlSessionFactoryBean(
-      DataSourceProxy dataSourceProxy, MybatisPlusProperties mybatisProperties) {
-    MybatisSqlSessionFactoryBean bean = new MybatisSqlSessionFactoryBean();
-    bean.setDataSource(dataSourceProxy);
-
-    ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-    try {
-
-      Resource[] mapperLocations = resolver.getResources(mybatisProperties.getMapperLocations()[0]);
-      bean.setMapperLocations(mapperLocations);
-
-      if (StringUtils.hasText(mybatisProperties.getConfigLocation())) {
-        Resource[] resources = resolver.getResources(mybatisProperties.getConfigLocation());
-        bean.setConfigLocation(resources[0]);
-      }
-      return bean.getObject();
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-    return null;
-  }
 }

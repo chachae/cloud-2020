@@ -6,6 +6,7 @@ import com.chachae.domain.Order;
 import com.chachae.service.AccountService;
 import com.chachae.service.OrderService;
 import com.chachae.service.StorageService;
+import io.seata.spring.annotation.GlobalTransactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -26,12 +27,15 @@ public class OrderServiceImpl extends ServiceImpl<OrderDAO, Order> implements Or
   @Resource private StorageService storageService;
 
   @Override
+  // name：随意，具有唯一性即可
+  @GlobalTransactional(name = "fsp-order-service",rollbackFor = Exception.class)
   public void create(Order order) {
 
     // 1 新建订单
     log.info("开始新建订单");
     order.setStatus(0);
-    orderDAO.insert(order);
+    System.out.println(order);
+    this.orderDAO.insert(order);
 
     // 2 扣减库存
     log.info("订单微服务开始调用 [库存服务] 进行库存扣减");
@@ -45,7 +49,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDAO, Order> implements Or
 
     // 4 修改订单状态,从0到1,1代表已完成
     log.info("开始修改订单状态");
-    orderDAO.updateById(Order.builder().id(order.getUserId()).status(1).build());
+    orderDAO.updateById(Order.builder().id(order.getId()).status(1).build());
     log.info("下单结束，:)");
   }
 }

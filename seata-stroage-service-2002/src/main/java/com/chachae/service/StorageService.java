@@ -18,4 +18,6 @@ public interface StorageService extends IService<Storage> {
    * @param count 数量
    */
   void decrease(Long productId, Integer count);
+
+  Storage selectByProductId(Long id);
 }

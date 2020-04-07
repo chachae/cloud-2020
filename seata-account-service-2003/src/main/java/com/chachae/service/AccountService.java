@@ -18,4 +18,6 @@ public interface AccountService extends IService<Account> {
    * @param money 金额
    */
   void decrease(Long userId, double money);
+
+  Account selectByUserId(Long userId);
 }

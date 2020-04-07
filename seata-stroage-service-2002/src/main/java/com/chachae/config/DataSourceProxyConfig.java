@@ -23,55 +23,16 @@ import javax.sql.DataSource;
 @Configuration
 public class DataSourceProxyConfig {
 
-    @Value("${mybatis-plus.mapper-locations}")
-    private String mapperLocations;
-
-    /**
-     * @param sqlSessionFactory SqlSessionFactory
-     * @return SqlSessionTemplate
-     */
-    @Bean
-    public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) {
-        return new SqlSessionTemplate(sqlSessionFactory);
-    }
-
-    /**
-     * 从配置文件获取属性构造datasource，注意前缀，这里用的是druid，根据自己情况配置,
-     * 原生datasource前缀取"spring.datasource"
-     *
-     * @return DataSource
-     */
     @Bean
     @ConfigurationProperties(prefix = "spring.datasource")
-    public DataSource druidDataSource() {
+    public DataSource dataSource() {
         return new DruidDataSource();
     }
 
-    /**
-     * 构造datasource代理对象，替换原来的datasource
-     *
-     * @param druidDataSource druid 数据源
-     * @return DataSourceProxy
-     */
+    @Bean
     @Primary
-    @Bean("dataSource")
-    public DataSourceProxy dataSourceProxy(DataSource druidDataSource) {
-        return new DataSourceProxy(druidDataSource);
+    public DataSourceProxy dataSourceProxy(DataSource dataSource) {
+        return new DataSourceProxy(dataSource);
     }
 
-    @Bean(name = "sqlSessionFactory")
-    public SqlSessionFactory sqlSessionFactoryBean(DataSourceProxy dataSourceProxy) throws Exception {
-        SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
-        bean.setDataSource(dataSourceProxy);
-        ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-        bean.setMapperLocations(resolver.getResources(mapperLocations));
-
-        SqlSessionFactory factory;
-        try {
-            factory = bean.getObject();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        return factory;
-    }
 }

@@ -1,5 +1,6 @@
 package com.chachae.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.chachae.dao.StorageDAO;
 import com.chachae.domain.Storage;
@@ -22,13 +23,20 @@ public class StorageServiceImpl extends ServiceImpl<StorageDAO, Storage> impleme
   @Override
   public void decrease(Long productId, Integer count) {
 
-    Storage result = this.storageDAO.selectById(productId);
+    Storage result = this.selectByProductId(productId);
 
     Storage storage = new Storage();
     storage
         .setId(productId)
-        .setTotal(result.getResidue() - count)
+        .setResidue(result.getResidue() - count)
         .setUsed(result.getUsed() + count);
     this.storageDAO.updateById(storage);
+  }
+
+  @Override
+  public Storage selectByProductId(Long id) {
+    QueryWrapper<Storage> qw = new QueryWrapper<>();
+    qw.lambda().eq(Storage::getProductId, id);
+    return this.storageDAO.selectOne(qw);
   }
 }

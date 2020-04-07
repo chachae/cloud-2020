@@ -2,6 +2,7 @@ package com.chachae.domain;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,11 +18,12 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 @NoArgsConstructor
 @AllArgsConstructor
+@TableName("t_storage")
 public class Storage {
 
+  @TableId(type = IdType.AUTO)
   private Long id;
   // 产品id
-  @TableId(type = IdType.AUTO)
   private Long productId;
   // 总库存
   private Integer total;
