@@ -63,11 +63,6 @@
             <scope>test</scope>
         </dependency>
 
-        <dependency>
-            <groupId>com.chachae</groupId>
-            <artifactId>cloud-api-commons</artifactId>
-            <version>${project.version}</version>
-        </dependency>
     </dependencies>
 
 </project>

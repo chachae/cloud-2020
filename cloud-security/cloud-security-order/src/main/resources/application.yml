@@ -1,0 +1,48 @@
+server:
+  port: 8999
+  servlet:
+    context-path: /order
+
+  tomcat:
+    remote-ip-header: x‐forwarded‐for
+    protocol-header: x‐forwarded‐proto
+  forward-headers-strategy: native
+
+spring:
+  application:
+    name: cloud-security-order
+
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql:///cloud2020?serverTimezone=Asia/Shanghai&characterEncoding=utf8&useSSL=false
+
+  cloud:
+    nacos:
+      discovery:
+        # Nacos服务注册中心地址
+        server-addr: 39.108.122.108:8848
+    sentinel:
+      transport:
+        # sentinel dashboard 地址
+        dashboard: localhost:8080
+        # 默认为8719，如果被占用会自动+1，直到找到为止
+        port: 8719
+
+  main:
+    allow-bean-definition-overriding: true
+
+  http:
+    encoding:
+      force: true
+
+  mvc:
+    throw-exception-if-no-handler-found: true
+  resources:
+    add-mappings: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

@@ -1,0 +1,43 @@
+server:
+  port: 9000
+  servlet:
+    context-path: /uaa
+
+spring:
+  application:
+    name: cloud-security-uaa
+
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql:///rbac-common?serverTimezone=Asia/Shanghai&characterEncoding=utf8&useSSL=false
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  cloud:
+    nacos:
+      discovery:
+        # Nacos服务注册中心地址
+        server-addr: 39.108.122.108:8848
+    sentinel:
+      transport:
+        # sentinel dashboard 地址
+        dashboard: localhost:8080
+        # 默认为8719，如果被占用会自动+1，直到找到为止
+        port: 8719
+
+  main:
+    allow-bean-definition-overriding: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+mybatis-plus:
+  global-config:
+    banner: false
+    db-config:
+      id-type: auto
+  configuration:
+    map-underscore-to-camel-case: true
